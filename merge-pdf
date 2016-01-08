@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Combine PDFs into one.
+# Usage: $0 <output_file> <input_file1> <input_file2> ...
+
+if [ $# -lt 3 ]
+then
+    echo "Merges multiple PDF files into one."  
+    echo "Usage: $(basename $0) <output_file> <input_file1> <input_file2> ..."
+    exit 1
+fi
+
+OUTFILE="$1"
+shift
+
+gs -q -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="$OUTFILE" "$@" - <<EOF
+EOF
